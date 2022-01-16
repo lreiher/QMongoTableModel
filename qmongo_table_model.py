@@ -43,10 +43,10 @@ def instance_lru_cache(maxsize=128, typed=False):
     return lru_cache_decorator
 
 
-class BaseMongoTableModel(QAbstractTableModel):
-    """The BaseMongoTableModel provides a data model for MongoDB queries.
+class QBaseMongoTableModel(QAbstractTableModel):
+    """The QBaseMongoTableModel provides a data model for MongoDB queries.
 
-    The BaseMongoTableModel can be used to provide data obtained from MongoDB
+    The QBaseMongoTableModel can be used to provide data obtained from MongoDB
     queries to view classes such as QTableView. The derived MongoTableModel
     additionally supports sorting.
 
@@ -65,7 +65,7 @@ class BaseMongoTableModel(QAbstractTableModel):
                  max_nesting=0,
                  cache_size=50,
                  bson_options=bson_util.DEFAULT_JSON_OPTIONS):
-        """Creates an empty BaseMongoTableModel.
+        """Creates an empty QBaseMongoTableModel.
 
         Args:
             parent: Qt parent (None)
@@ -74,7 +74,7 @@ class BaseMongoTableModel(QAbstractTableModel):
             bson_options: `bson.json_util.JSONOptions` formatting options
         """
 
-        super(BaseMongoTableModel, self).__init__(parent)
+        super(QBaseMongoTableModel, self).__init__(parent)
 
         # attributes
         self.max_nesting = max_nesting
@@ -353,10 +353,10 @@ class BaseMongoTableModel(QAbstractTableModel):
         self.endResetModel()
 
 
-class MongoTableModel(QSortFilterProxyModel):
-    """The MongoTableModel provides a sortable data model for MongoDB queries.
+class QMongoTableModel(QSortFilterProxyModel):
+    """The QMongoTableModel provides a sortable data model for MongoDB queries.
 
-    The MongoTableModel can be used to provide data obtained from MongoDB
+    The QMongoTableModel can be used to provide data obtained from MongoDB
     queries to view classes such as QTableView.
     """
 
@@ -365,7 +365,7 @@ class MongoTableModel(QSortFilterProxyModel):
                  max_nesting=0,
                  cache_size=50,
                  bson_options=bson_util.DEFAULT_JSON_OPTIONS):
-        """Creates an empty MongoTableModel.
+        """Creates an empty QMongoTableModel.
 
         Args:
             parent: Qt parent (None)
@@ -374,10 +374,10 @@ class MongoTableModel(QSortFilterProxyModel):
             bson_options: `bson.json_util.JSONOptions` formatting options
         """
 
-        super(MongoTableModel, self).__init__(parent)
+        super(QMongoTableModel, self).__init__(parent)
 
         # set proxy source model
-        source_model = BaseMongoTableModel(self, max_nesting, cache_size,
+        source_model = QBaseMongoTableModel(self, max_nesting, cache_size,
                                            bson_options)
         self.setSourceModel(source_model)
 
